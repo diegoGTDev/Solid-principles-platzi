@@ -1,13 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-
 namespace DependencyInversion.Controllers;
 
 [ApiController, Route("student")]
 public class StudentController : ControllerBase
 {
-    StudentRepository studentRepository = new StudentRepository();
-    Logbook logbook = new Logbook();
-
+    
+    private readonly ILogbook logbook;
+    private readonly IStudentRepository studentRepository;
+    public StudentController(IStudentRepository studentRepository, ILogbook logbook)
+    {
+        this.studentRepository = studentRepository;
+        this.logbook = logbook;
+    }
     [HttpGet]
     public IEnumerable<Student> Get()
     {

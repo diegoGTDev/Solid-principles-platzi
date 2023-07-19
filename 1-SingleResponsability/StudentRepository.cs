@@ -4,7 +4,7 @@ namespace SingleResponsability
 {
     public class StudentRepository
     {
-        private static FakeStorage<Student> storage;
+        private static FakeStorage<Student>? storage;
 
         public StudentRepository()
         {
